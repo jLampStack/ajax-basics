@@ -6,7 +6,44 @@
   <link rel="stylesheet" href="css/main.css">
   <title>AJAX with JavaScript</title>
   <script>
- 
+    // Create XHR Request Object
+    let xhr = new XMLHttpRequest();
+    /* 
+       Create Callback to Listens for Change of State
+       1. xhr is the Object we created
+       2. readyState is a property that holds the xhr status
+       3. responseText is the info the web server sends back as a string
+    */
+    xhr.onreadystatechange = () => {
+      if ( xhr.readyState === 4 ) {
+        document.getElementById('ajax').innerHTML = xhr.responseText;
+      }
+    };
+    /* 
+       Use XHR open method which specifies the request type
+       
+       open( method, url, async, user, psw)    
+       
+       method: GET or POST or PUT or DELETE, 
+       url: where the request is going and is either 
+            async: true (asynchronous) or false (synchronous)
+            * True is default and optional
+       user: optional user name, psw: optional password
+    */
+    xhr.open( 'GET', 'sidebar.html', true );
+    /* 
+       Send Request, open() prepares request, send() sends it 
+       
+       Wrapping it in a function is optional. If no function is used
+       it the request will automatically be sent.  If a function wraps
+       around this we have to wait for it to be called, or for an
+       event to occur.  The function can be any name we choose.
+    */
+    function sendAJAX() {
+     xhr.send();
+     // Hides button after request is sent
+     document.getElementById('load').style.display = 'none';
+    }
   </script>
 </head>
 <body>
@@ -16,6 +53,7 @@
         <div class="grid-100">
           <div class="heading">
             <h1>Bring on the AJAX</h1>
+            <button id="load" onclick="sendAJAX()">Bring it!</button>
           </div>
           <ul id="ajax">
 
