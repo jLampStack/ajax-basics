@@ -1,4 +1,4 @@
-# https://jlampstack.github.io/ajax-basics/
+### https://jlampstack.github.io/ajax-basics/
 
 ### RESOURCES
 * https://teamtreehouse.com/library/introducing-ajax-2
