@@ -9,6 +9,3 @@ Introducing Asynchronous JavaScript and XML, or AJAX. How it works, who uses it 
 
 It's a good idea to have some knowledge of JavaScript, jQuery and DOM manipulation.
 
-
-
-
