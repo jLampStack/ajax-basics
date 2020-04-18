@@ -12,6 +12,17 @@ xhr.onreadystatechange = function() {
     let employees = JSON.parse( xhr.responseText );
     // console.log(typeof employees);  // object
     console.log(employees);  // object
+    let statusHTML = `<ul class="bulleted">`;
+      employees.forEach( employee => {
+        if ( employee.inoffice ) {
+          statusHTML += `<li class="in">`;
+        } else {
+          statusHTML += `<li class="out">`;
+        }
+        statusHTML += `${employee.name} </li>`;
+      });
+      statusHTML += `</ul>`;
+      document.querySelector('#employeeList').innerHTML = statusHTML;
   }
 }
 
@@ -31,3 +42,39 @@ xhr.open( 'GET', 'data/employees.json');
 // STEP 4 - Send Request
 
 xhr.send();
+
+
+
+
+// XHR Room Object
+
+let xhrRoom = new XMLHttpRequest();
+
+
+// Callback Function (Event Handler)
+
+xhrRoom.onreadystatechange = function() {
+  if ( xhrRoom.readyState === 4 ) {
+    let rooms = JSON.parse( xhrRoom.responseText );
+    let roomHTML = `<ul class="rooms">`;
+      rooms.forEach( room => {
+        if ( room.available ) {
+          roomHTML += `<li class="empty">`;
+        } else {
+          roomHTML += `<li class="full">`;
+        }
+        roomHTML += `${room.room} </li>`;
+      });
+      roomHTML += `</ul>`;
+      document.querySelector('#roomList').innerHTML = roomHTML;
+  }
+}
+
+
+// Open Request
+
+xhrRoom.open( 'GET', 'data/rooms.json');
+
+// Send Request
+
+xhrRoom.send();
