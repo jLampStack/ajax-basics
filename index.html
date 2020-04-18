@@ -1,56 +1,11 @@
-    // Create XHR Request Object
-    let xhr = new XMLHttpRequest();
-    /* 
-       Create Callback to Listens for Change of State
-       1. xhr is the Object we created
-       2. readyState is a property that holds the xhr status
-       3. responseText is the info the web server sends back as a string
-    */
-    xhr.onreadystatechange = () => {
-      // Checks if readyState is 4: request finished and response is ready
-      if ( xhr.readyState === 4 ) {
-        // Checks for status 200: "OK"
-        if ( xhr.status === 200 ) {
-         document.getElementById('ajax').innerHTML = xhr.responseText;
-         // Normally would just use the else with xhr.status and xhr.statusText
-         // These are only examples of things we can do if wanted
-        } else if ( xhr.status === 403 ) {
-         document.getElementById('ajax').innerHTML = `403: "Forbidden"`;
-        } else if ( xhr.status === 404 ) {
-         document.getElementById('ajax').innerHTML = xhr.status + ' Error: ' + xhr.statusText;
-        } else if ( xhr.status === 500 ) {
-         document.getElementById('ajax').innerHTML = `500: "Server error"`;
-        } else {
-         document.getElementById('ajax').innerHTML = xhr.status + ' Error: ' + xhr.statusText;
-        }
-      }
-    };
-    /* 
-       Use XHR open method which specifies the request type
-       
-       open( method, url, async, user, psw)    
-       
-       method: GET or POST or PUT or DELETE, 
-       url: where the request is going and is either 
-            async: true (asynchronous) or false (synchronous)
-            * True is default and optional
-       user: optional user name, psw: optional password
-    */
-    xhr.open( 'GET', 'sidebar.html', true );
-    /* 
-       Send Request, open() prepares request, send() sends it 
-       
-       Wrapping it in a function is optional. If no function is used
-       it the request will automatically be sent.  If a function wraps
-       around this we have to wait for it to be called, or for an
-       event to occur.  The function can be any name we choose.
-    */
-    function sendAJAX() {
-     xhr.send();
-     // Hides button after request is sent
-     document.getElementById('load').style.display = 'none';
-    }
-  </script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AJAX Office Status Widget</title>
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  
 </head>
 <body>
   <div class="grid-container centered">
@@ -58,13 +13,24 @@
       <div class="contained">
         <div class="grid-100">
           <div class="heading">
-            <h1>Bring on the AJAX</h1>
-            <button id="load" onclick="sendAJAX()">Bring it!</button>
+            <h1>Corporate Intranet</h1>
           </div>
-          <ul id="ajax">
-
-          </ul>
         </div>
+        <section class="grid-70 main">
+          <h2>Lorem Ipsum Headline</h2>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+        </section>
+        <aside class="grid-30 list">
+          <h2>Employee Office Status</h2>
+          <div id="employeeList">
+
+          </div>
+        </aside>
+        <footer class="grid-100">
+          <p>Copyright, The Intranet Corporation</p>
+        </footer>
       </div>
     </div>
   </div>
