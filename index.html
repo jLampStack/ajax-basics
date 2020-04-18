@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <title>AJAX with JavaScript</title>
-  <script>
     // Create XHR Request Object
     let xhr = new XMLHttpRequest();
     /* 
@@ -15,8 +7,22 @@
        3. responseText is the info the web server sends back as a string
     */
     xhr.onreadystatechange = () => {
+      // Checks if readyState is 4: request finished and response is ready
       if ( xhr.readyState === 4 ) {
-        document.getElementById('ajax').innerHTML = xhr.responseText;
+        // Checks for status 200: "OK"
+        if ( xhr.status === 200 ) {
+         document.getElementById('ajax').innerHTML = xhr.responseText;
+         // Normally would just use the else with xhr.status and xhr.statusText
+         // These are only examples of things we can do if wanted
+        } else if ( xhr.status === 403 ) {
+         document.getElementById('ajax').innerHTML = `403: "Forbidden"`;
+        } else if ( xhr.status === 404 ) {
+         document.getElementById('ajax').innerHTML = xhr.status + ' Error: ' + xhr.statusText;
+        } else if ( xhr.status === 500 ) {
+         document.getElementById('ajax').innerHTML = `500: "Server error"`;
+        } else {
+         document.getElementById('ajax').innerHTML = xhr.status + ' Error: ' + xhr.statusText;
+        }
       }
     };
     /* 
